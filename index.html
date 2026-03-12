@@ -7,13 +7,13 @@
     <style>
         body {
             background-color: black;
-            margin: 0;
+            margin: 150px;
         }
 
         .welcome-text {
             text-align: center;
-            color: #780507;
-            font-family: 'ghost';
+            color: #400103;
+            font-family: 'oleo';
             font-size: 70px;
             margin-top: 80px;
             margin-bottom: 0;
@@ -40,36 +40,90 @@
         .wanted-text {
             text-align: center;
             font-size: 40px;
-            font-family: 'ghost';
+            font-family: 'oleo';
             color: #f6edbd;
             margin: 0;
         }
 
         .dead-or-alive {
             text-align: center;
-            font-size: 60px;
-            font-family: 'ghost';
+            font-size: 40px;
+            font-family: 'oleo';
             color: #f6edbd;
             margin: 0;
         }
 
-        .arrow {
+        .arrow-wrapper {
             position: fixed;
             bottom: 25px;
             right: 30px;
+        }
+
+        .arrow {
             font-size: 50px;
             color: #f6edbd;
             text-decoration: none;
-            font-family: 'ghost';
+            font-family: 'oleo';
+            display: block;
         }
 
         .arrow:hover {
-            color: #780507;
+            color: #400103;
+        }
+
+        .tooltip {
+            display: none;
+            position: absolute;
+            bottom: 70px;
+            right: 0;
+            background-color: black;
+            border: 2px solid #f6edbd;
+            color: #f6edbd;
+            font-family: 'oleo';
+            font-size: 18px;
+            padding: 15px 20px;
+            white-space: nowrap;
+            box-shadow: 4px 4px 0px #780507;
+        }
+
+        .tooltip p {
+            margin: 0 0 12px 0;
+        }
+
+        .tooltip-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .tooltip-buttons button {
+            font-family: 'oleo';
+            font-size: 16px;
+            padding: 6px 18px;
+            cursor: pointer;
+            border: 2px solid #f6edbd;
+            background: transparent;
+            color: #f6edbd;
+            box-shadow: 3px 3px 0px #780507;
+            transition: all 0.2s ease;
+        }
+
+        .tooltip-buttons button:hover {
+            background-color: #780507;
+        }
+
+        .arrow-wrapper:hover .tooltip {
+            display: block;
         }
 
         @font-face {
             font-family: 'ghost';
             src: url('fonts/Scary Ghost.otf');
+        }
+
+        @font-face {
+            font-family: 'oleo';
+            src: url('fonts/OleoScriptSwashCaps-Regular.ttf');
         }
     </style>
 </head>
@@ -85,14 +139,23 @@
     </div>
 
     <div class="wanted-text">
-        <p>have u seen this cat?</p>
+        <p>have you seen these cats?</p>
     </div>
 
     <div class="dead-or-alive">
         <p>WANTED DEAD OR ALIVE</p>
     </div>
 
-    <a href="cat-in-box.html" class="arrow">→</a>
+    <div class="arrow-wrapper">
+        <div class="tooltip">
+            <p>do you agree to all terms and conditions?</p>
+            <div class="tooltip-buttons">
+                <button onclick="window.location.href='cat-in-box.html'">yes</button>
+                <button onclick="window.location.href='cat-in-box.html'">no</button>
+            </div>
+        </div>
+        <a href="#" class="arrow">→</a>
+    </div>
 
 </body>
 </html>
