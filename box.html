@@ -1,0 +1,32 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Begin</title>
+</head>
+<body>
+    <div class="heading">
+        <h1>Select the box with the cat</h1>
+    </div>
+
+    <div class="boxes">
+        <img src="images/19th-century-box.png" alt="">
+        <img src="images/19th-century-box.png" alt="">
+        <img src="images/19th-century-box.png" alt="">
+        <img src="images/19th-century-box.png" alt="">
+        <img src="images/19th-century-box.png" alt="">
+        <img src="images/19th-century-box.png" alt="">
+    </div>
+
+    <script>
+        const boxes = document.querySelectorAll('.boxes img');
+
+        boxes.forEach(box => {
+            box.addEventListener('click', () => {
+                window.location.href = 'cat-in-box.html';
+            });
+        });
+    </script>
+</body>
+</html>
