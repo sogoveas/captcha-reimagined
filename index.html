@@ -83,7 +83,6 @@
             font-size: 18px;
             padding: 15px 20px;
             white-space: nowrap;
-            box-shadow: 4px 4px 0px #780507;
         }
 
         .tooltip p {
@@ -104,7 +103,6 @@
             border: 2px solid #f6edbd;
             background: transparent;
             color: #f6edbd;
-            box-shadow: 3px 3px 0px #780507;
             transition: all 0.2s ease;
         }
 
@@ -148,14 +146,22 @@
 
     <div class="arrow-wrapper">
         <div class="tooltip">
-            <p>do you agree to all terms and conditions?</p>
+            <p id="tooltip-message">do you agree to all terms and conditions?</p>
             <div class="tooltip-buttons">
-                <button onclick="window.location.href='cat-in-box.html'">yes</button>
-                <button onclick="window.location.href='cat-in-box.html'">no</button>
+                <button onclick="window.location.href='box.html'">yes</button>
+                <button id="no-btn" onclick="handleNo()">no</button>
             </div>
         </div>
         <a href="#" class="arrow">→</a>
     </div>
+
+    <script>
+        function handleNo() {
+            document.getElementById('tooltip-message').textContent = 'you must agree to proceed.';
+            document.getElementById('tooltip-message').style.color = '#780507';
+            document.getElementById('no-btn').style.display = 'none';
+        }
+    </script>
 
 </body>
 </html>

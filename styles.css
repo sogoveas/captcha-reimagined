@@ -1,11 +1,6 @@
 @font-face {
-    font-family: 'Oleo Script Swash Caps';
-    src: url('fonts/OleoScriptSwashCaps-Regular.ttf');
-}
-
-@font-face {
-    font-family: 'Starlight';
-    src: url('fonts/Starlight Romance.ttf');
+    font-family: 'typewriter';
+    src: url('fonts/JMH Typewriter-Thin.ttf');
 }
 
 body {
@@ -19,20 +14,20 @@ body {
 }
 
 .heading {
-    padding: 50px;
+    padding-top: 50px;
     text-align: center;
 }
 
 .heading h1 {
     margin: 0;
-    font-family: 'Starlight';
-    font-size: 3rem;
+    font-family: 'typewriter';
+    font-size: 40px;
 }
 
 
 .confirmation-of-state-text h1 {
     margin: 0;
-    font-family: 'Starlight';
+    font-family: 'typewriter';
     font-size: 2rem;
     line-height: 1;
 }
@@ -51,6 +46,14 @@ body {
     height: 275px;
     width: auto;
     display: block;
+    transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+.boxes img:hover {
+    filter: drop-shadow(0 0 4px #f6edbd)
+            drop-shadow(0 0 8px #f6edbd)
+            drop-shadow(0 0 8px rgba(246,237,189,0.7));
+    transform: scale(1.05);
 }
 
 .basket-cat {
@@ -73,7 +76,7 @@ body {
     flex-direction: column;
     justify-content: center;
     padding: 40px;
-    font-family: 'Oleo Script Swash Caps';
+    font-family: 'typewriter';
     line-height: 1;
 
 }

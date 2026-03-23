@@ -10,18 +10,63 @@
             padding: 0;
             background-color: black;
             color: #f6edbd;
-            font-family: 'ghost', cursive;
+            font-family: 'typewriter';
             display: flex;
             justify-content: center;
             align-items: center;
+            height: 100vh;
+        }
+
+        .captcha-widget {
+            border: 2px solid #f6edbd;
+            padding: 25px 35px;
+            width: 500px;
+            background-color: #0a0a0a;
+        }
+
+        .captcha-header {
+            font-size: 13px;
+            letter-spacing: 3px;
+            color: #780507;
+            text-transform: uppercase;
+            border-bottom: 1px solid #f6edbd33;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: 'typewriter';
+        }
+
+        .captcha-header span {
+            font-size: 11px;
+            color: #f6edbd66;
+            letter-spacing: 1px;
+        }
+
+        .captcha-label {
+            font-size: 13px;
+            letter-spacing: 2px;
+            color: #f6edbd99;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            font-family: 'typewriter';
         }
 
         .confirmation-of-state-text {
-            font-size: 100px;
+            font-size: 28px;
             line-height: 1;
             display: flex;
             flex-direction: column;
             text-align: left;
+            margin-bottom: 25px;
+        }
+
+        .confirmation-of-state-text > p {
+            font-size: 22px;
+            color: #f6edbd99;
+            letter-spacing: 2px;
+            margin: 0 0 20px 0;
         }
 
         .bullet-item {
@@ -30,6 +75,8 @@
             cursor: pointer;
             text-decoration: none;
             color: #f6edbd;
+            padding: 8px 0;
+            transition: color 0.2s;
         }
 
         .bullet-item:hover {
@@ -37,29 +84,115 @@
         }
 
         .bullet-item img {
-            height: 180px;
+            height: 80px;
             width: auto;
+            margin-right: 15px;
         }
+
+        .fake-radio {
+            width: 16px;
+            height: 16px;
+            border: 2px solid #f6edbd;
+            border-radius: 50%;
+            margin-right: 15px;
+            flex-shrink: 0;
+            transition: background-color 0.2s;
+        }
+
+        .bullet-item:hover .fake-radio {
+            background-color: #780507;
+            border-color: #780507;
+        }
+
+        .captcha-footer {
+            border-top: 1px solid #f6edbd33;
+            padding-top: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .captcha-footer-left {
+            font-size: 10px;
+            color: #f6edbd44;
+            letter-spacing: 1px;
+            font-family: 'typewriter';
+            line-height: 1.5;
+        }
+
+        .captcha-icons {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .captcha-icons span {
+            font-size: 20px;
+            cursor: pointer;
+            color: #f6edbd66;
+            transition: color 0.2s;
+        }
+
+        .captcha-icons span:hover {
+            color: #f6edbd;
+        }
+
+        @font-face {
+            font-family: 'ghost';
+            src: url('fonts/Scary Ghost.otf');
+        }
+
+        @font-face {
+            font-family: 'typewriter';
+            src: url('fonts/JMH\ Typewriter-Thin.ttf');
+        }
+
+        @font-face {
+            font-family: 'germania';
+            src: url('fonts/GermaniaOne-Regular.ttf');
+        }
+
     </style>
 </head>
 <body>
-    <div class="confirmation-of-state-text">
-        <p>confirm the state of the cat:</p>
+    <div class="captcha-widget">
 
-        <a href="access-denied.html" class="bullet-item">
-            <img src="images/can-bonnet 2 Background Removed.png" alt="">
-            <p>alive</p>
-        </a>
+        <div class="captcha-header">
+            ☠ quantum security check
+            <span>v2.4.∞</span>
+        </div>
 
-        <a href="access-denied.html" class="bullet-item">
-            <img src="images/can-bonnet 2 Background Removed.png" alt="">
-            <p>dead</p>
-        </a>
 
-        <a href="access-denied.html" class="bullet-item">
-            <img src="images/can-bonnet 2 Background Removed.png" alt="">
-            <p>alive and dead</p>
-        </a>
+        <div class="confirmation-of-state-text">
+            <p>confirm the state of the cat:</p>
+
+            <a href="access-denied.html" class="bullet-item">
+                <div class="fake-radio"></div>
+                alive
+            </a>
+
+            <a href="access-denied.html" class="bullet-item">
+                <div class="fake-radio"></div>
+                dead
+            </a>
+
+            <a href="access-denied.html" class="bullet-item">
+                <div class="fake-radio"></div>
+                alive and/or dead
+            </a>
+        </div>
+
+        <div class="captcha-footer">
+            <div class="captcha-footer-left">
+                schrodinger security inc.<br>
+                protected by quantum uncertainty
+            </div>
+            <div class="captcha-icons">
+                <span title="refresh">↺</span>
+                <span title="help">?</span>
+            </div>
+        </div>
+
     </div>
 </body>
 </html>
