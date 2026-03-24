@@ -1,70 +1,128 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
-    <title> no access </title>
-
+    <title>schrodinger security — access denied</title>
     <style>
-        .sleeping-cat {
-            position: fixed;
-            bottom: 0;
-            right: 0;
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            overflow: hidden;
         }
 
-        .sleeping-cat img {
-            height: 400px;
-            width: auto;
+        .widget { width: 400px; }
+
+        .denied-block {
+            padding: 20px 16px 16px 16px;
+            border-bottom: 1px solid #f6edbd1a;
         }
 
-        .text-block {
-            display: inline-block;
-            margin-top: 200px;
-            margin-left: 200px;
-        }
-
-        .access-denied {
+        .denied-title {
+            font-family: 'oleo';
+            font-size: 50px;
             color: #400103;
+            margin: 0 0 4px 0;
+            line-height: 1;
+        }
+
+        .denied-sub {
             font-family: 'oleo';
-            font-size: 60px;
+            font-size: 20px;
+            color: #f6edbd55;
             margin: 0;
         }
 
-        .user-state {
-            color: #f6edbd;
-            font-family: 'oleo';
-            font-size: 40px;
-            margin: 0;
+        .options-block {
+            padding: 6px 16px;
+            border-bottom: 1px solid #f6edbd1a;
         }
 
-        h1, h3 {
-            margin: 0;
+        .sleeping-cat-wrap {
+            text-align: center;
+            padding: 16px;
+            border-bottom: 1px solid #f6edbd1a;
         }
 
-        @font-face {
-            font-family: 'ghost';
-            src: url('fonts/Scary Ghost.otf');
+        .sleeping-cat-wrap img {
+            height: 120px;
+            width: auto;
+            filter: grayscale(30%) sepia(15%);
+            opacity: 0.6;
         }
 
-        @font-face {
-            font-family: 'oleo';
-            src: url('fonts/OleoScriptSwashCaps-Regular.ttf');
+        .widget-actions {
+            padding: 10px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
+
+        .widget-actions-left {
+            font-size: 9px;
+            letter-spacing: 0.12em;
+            color: #f6edbd2a;
+            text-transform: uppercase;
+            line-height: 1.6;
+        }
+
+        .widget-footer-icons { display: flex; gap: 14px; }
+        .widget-footer-icons span {
+            font-size: 16px;
+            cursor: pointer;
+            color: #f6edbd33;
+            transition: color 0.15s;
+        }
+        .widget-footer-icons span:hover { color: #f6edbd; }
     </style>
 </head>
 <body>
-    <div class="text-block">
-        <div class="access-denied">
-            <h1>ACCESS DENIED!</h1>
-        </div>
 
-        <div class="user-state">
-            <h3>cannot confirm the state of the user</h3>
+    <div class="site-header">
+        <span class="site-header-brand">☠ schrodinger security inc.</span>
+        <div class="site-header-right">
+            <div class="progress-track">
+                <div class="pip done"></div>
+                <div class="pip done"></div>
+                <div class="pip done"></div>
+                <div class="pip done"></div>
+                <div class="pip now"></div>
+            </div>
+            step 5 of 5
         </div>
     </div>
 
-    <div class="sleeping-cat">
-        <img src="images/sleeping-cat.png" alt="">
+    <div class="widget">
+        </div>
+        <div class="denied-block">
+            <p class="denied-title">ACCESS DENIED!</p>
+            <p class="denied-sub">cannot confirm the state of the user</p>
+        </div>
+
+        <div class="sleeping-cat-wrap">
+            <img src="images/sleeping-cat.png" alt="sleeping cat">
+        </div>
+
+        <div class="options-block">
+            <a href="box.html" class="option-row">
+                <div class="radio-dot"></div>
+                retry verification
+            </a>
+            <a href="confirm-state.html" class="option-row">
+                <div class="radio-dot"></div>
+                reconsider the state of the cat
+            </a>
+            <a href="index.html" class="option-row">
+                <div class="radio-dot"></div>
+                return home
+            </a>
+        </div>
     </div>
+
+
 </body>
 </html>

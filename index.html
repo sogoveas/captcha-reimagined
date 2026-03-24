@@ -1,167 +1,156 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wanted Cat</title>
-
+    <link rel="stylesheet" href="styles.css">
+    <title>schrodinger security — welcome</title>
     <style>
         body {
-            background-color: black;
-            margin: 150px;
-        }
-
-        .welcome-text {
-            text-align: center;
-            color: #400103;
-            font-family: 'oleo';
-            font-size: 70px;
-            margin-top: 80px;
-            margin-bottom: 0;
-        }
-
-        .welcome-text p,
-        .wanted-text p,
-        .dead-or-alive p {
-            margin: 0;
-        }
-
-        .index-cat {
             display: flex;
+            flex-direction: column;
+            align-items: center;
             justify-content: center;
-            margin: 0;
+            height: 100vh;
+            overflow: hidden;
         }
 
-        .index-cat img {
-            height: 300px;
+        .widget { width: 400px; }
+
+        .cat-block {
+            padding: 20px 16px;
+            border-bottom: 1px solid #f6edbd1a;
+            text-align: center;
+        }
+
+        .subject-label {
+            font-size: 9px;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: #f6edbd;
+            margin: 0 0 14px 0;
+        }
+
+        .cat-img {
+            height: 180px;
             width: auto;
             display: block;
+            margin: 0 auto;
+            filter: grayscale(20%) sepia(10%);
         }
 
-        .wanted-text {
-            text-align: center;
-            font-size: 40px;
+        .wanted-title {
             font-family: 'oleo';
+            font-size: 28px;
             color: #f6edbd;
+            margin: 14px 0 2px 0;
+            line-height: 1;
+        }
+
+        .wanted-sub {
+            font-family: 'oleo';
+            font-size: 16px;
+            color: #780507;
             margin: 0;
         }
 
-        .dead-or-alive {
-            text-align: center;
-            font-size: 40px;
-            font-family: 'oleo';
-            color: #f6edbd;
-            margin: 0;
+        .terms-block {
+            padding: 14px 16px;
         }
 
-        .arrow-wrapper {
-            position: fixed;
-            bottom: 25px;
-            right: 30px;
-        }
-
-        .arrow {
-            font-size: 50px;
-            color: #f6edbd;
-            text-decoration: none;
-            font-family: 'oleo';
-            display: block;
-        }
-
-        .arrow:hover {
-            color: #400103;
-        }
-
-        .tooltip {
-            display: none;
-            position: absolute;
-            bottom: 70px;
-            right: 0;
-            background-color: black;
-            border: 2px solid #f6edbd;
-            color: #f6edbd;
-            font-family: 'oleo';
-            font-size: 18px;
-            padding: 15px 20px;
-            white-space: nowrap;
-        }
-
-        .tooltip p {
+        .terms-prompt {
+            font-size: 11px;
+            letter-spacing: 0.15em;
+            color: #f6edbd66;
+            text-transform: uppercase;
             margin: 0 0 12px 0;
         }
 
-        .tooltip-buttons {
+        .terms-btns {
             display: flex;
-            gap: 10px;
-            justify-content: center;
+            gap: 8px;
         }
 
-        .tooltip-buttons button {
-            font-family: 'oleo';
-            font-size: 16px;
-            padding: 6px 18px;
+        .terms-btns button {
+            flex: 1;
+            font-family: 'typewriter', monospace;
+            font-size: 11px;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
             cursor: pointer;
-            border: 2px solid #f6edbd;
+            padding: 8px;
+            border: 1px solid #f6edbd2a;
             background: transparent;
+            color: #f6edbd55;
+            transition: all 0.15s;
+        }
+
+        .terms-btns button.yes:hover {
+            background: #780507;
+            border-color: #780507;
             color: #f6edbd;
-            transition: all 0.2s ease;
         }
 
-        .tooltip-buttons button:hover {
-            background-color: #780507;
+        .terms-btns button.no:hover {
+            color: #f6edbd33;
         }
 
-        .arrow-wrapper:hover .tooltip {
-            display: block;
-        }
-
-        @font-face {
-            font-family: 'ghost';
-            src: url('fonts/Scary Ghost.otf');
-        }
-
-        @font-face {
-            font-family: 'oleo';
-            src: url('fonts/OleoScriptSwashCaps-Regular.ttf');
+        .error-msg {
+            font-size: 10px;
+            color: #780507;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin: 8px 0 0 0;
+            display: none;
         }
     </style>
 </head>
-
 <body>
 
-    <div class="welcome-text">
-        <p>WELCOME</p>
-    </div>
-
-    <div class="index-cat">
-        <img src="images/tub-cat.png" alt="wanted cat">
-    </div>
-
-    <div class="wanted-text">
-        <p>have you seen these cats?</p>
-    </div>
-
-    <div class="dead-or-alive">
-        <p>WANTED DEAD OR ALIVE</p>
-    </div>
-
-    <div class="arrow-wrapper">
-        <div class="tooltip">
-            <p id="tooltip-message">do you agree to all terms and conditions?</p>
-            <div class="tooltip-buttons">
-                <button onclick="window.location.href='box.html'">yes</button>
-                <button id="no-btn" onclick="handleNo()">no</button>
+    <div class="site-header">
+        <span class="site-header-brand">☠ schrodinger security inc.</span>
+        <div class="site-header-right">
+            <div class="progress-track">
+                <div class="pip now"></div>
+                <div class="pip"></div>
+                <div class="pip"></div>
+                <div class="pip"></div>
+                <div class="pip"></div>
             </div>
+            step 1 of 5
         </div>
-        <a href="#" class="arrow">→</a>
+    </div>
+
+    <div class="widget">
+        <div class="widget-header">
+          
+        </div>
+
+        <div class="cat-block">
+            <p class="subject-label">subject on file</p>
+            <img class="cat-img" src="images/tub-cat.png" alt="the cat">
+            <p class="wanted-title">have you seen these cats?</p>
+            <br>
+            <p class="wanted-sub">WANTED — dead or alive</p>
+        </div>
+
+        <div class="terms-block">
+            <p class="terms-prompt">do you agree to all terms and conditions?</p>
+            <div class="terms-btns">
+                <button class="yes" onclick="window.location.href='box.html'">yes, proceed</button>
+                <button class="no" id="no-btn" onclick="handleNo()">no</button>
+            </div>
+            <p class="error-msg" id="error-msg">you must agree to proceed.</p>
+        </div>
     </div>
 
     <script>
         function handleNo() {
-            document.getElementById('tooltip-message').textContent = 'you must agree to proceed.';
-            document.getElementById('tooltip-message').style.color = '#780507';
-            document.getElementById('no-btn').style.display = 'none';
+            const msg = document.getElementById('error-msg');
+            const btn = document.getElementById('no-btn');
+            msg.style.display = 'block';
+            btn.style.display = 'none';
         }
     </script>
-
 </body>
 </html>

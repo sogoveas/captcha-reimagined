@@ -1,224 +1,185 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
-    <title>in the box</title>
-
+    <title>schrodinger security — observation</title>
     <style>
         body {
-            background-color: black;
-            color: #f6edbd;
-            margin: 0;
-            padding: 0;
-            font-family: 'typewriter';
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            overflow: hidden;
         }
 
-        .basket-cat {
+        .widget { width: 520px; }
+
+        .observation-block {
             display: flex;
             align-items: center;
-            justify-content: flex-start;
-            min-height: 100vh;
-            gap: 60px;
-            padding: 40px 40px 40px 0;
-            box-sizing: border-box;
+            gap: 0;
+            border-bottom: 1px solid #f6edbd1a;
         }
 
-        .cat-image img {
-            height: 400px;
+        .cat-panel {
+            flex-shrink: 0;
+            width: 200px;
+            border-right: 1px solid #f6edbd1a;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cat-panel img {
+            height: 200px;
             width: auto;
             display: block;
-        }
-     
-        .cat-text {
-            max-width: 600px;
+            filter: grayscale(20%) sepia(10%);
         }
 
-        .cat-existance p {
-            font-size: 80px;
-            line-height: 1;
-            margin: 0 0 20px 0;
-            color: #f6edbd;
+        .info-panel {
+            flex: 1;
+            padding: 20px 18px;
         }
 
-        .box-contents p {
-            font-size: 35px;
-            line-height: 1.3;
-            margin: 0 0 8px 0;
-            color: #f6edbd99;
-        }
-
-        /* captcha notice bar */
-        .captcha-notice {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background-color: #0a0a0a;
-            border-bottom: 2px solid #f6edbd22;
-            padding: 8px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 10px;
-            letter-spacing: 2px;
-            color: #f6edbd44;
-            text-transform: uppercase;
-        }
-
-        .captcha-notice-left {
-            color: #780507;
-            letter-spacing: 3px;
-        }
-
-        .captcha-notice-right {
-            display: flex;
-            gap: 20px;
-            align-items: center;
-        }
-
-        .progress-dots {
-            display: flex;
-            gap: 6px;
-            align-items: center;
-        }
-
-        .dot {
-            width: 8px;
-            height: 8px;
-            border: 1px solid #f6edbd44;
-            border-radius: 50%;
-        }
-
-        .dot.complete {
-            background-color: #780507;
-            border-color: #780507;
-        }
-
-        .dot.active {
-            background-color: #f6edbd;
-            border-color: #f6edbd;
-        }
-
-        /* warning box */
-        .warning-box {
-            position: fixed;
-            top: 50px;
-            left: 20px;
-            border: 1px solid #f6edbd22;
-            background-color: #0a0a0a;
-            padding: 10px 15px;
-            font-size: 10px;
-            letter-spacing: 1px;
-            color: #f6edbd44;
-            text-transform: uppercase;
-            line-height: 1.8;
-            max-width: 180px;
-        }
-
-        .warning-box .warning-title {
-            color: #780507;
-            font-size: 11px;
-            letter-spacing: 2px;
-            margin-bottom: 6px;
-        }
-
-        /* exit sign */
-        .exit-sign {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-        }
-
-        .exit-sign img {
-            height: 100px;
-            width: auto;
-            cursor: pointer;
-        }
-
-        /* captcha footer */
-        .captcha-footer {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background-color: #0a0a0a;
-            border-top: 2px solid #f6edbd22;
-            padding: 8px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        .info-label {
             font-size: 9px;
-            letter-spacing: 1px;
-            color: #f6edbd33;
+            letter-spacing: 0.25em;
             text-transform: uppercase;
+            color: #f6edbd2a;
+            margin: 0 0 12px 0;
         }
 
-        @font-face {
-            font-family: 'ghost';
-            src: url('fonts/Scary Ghost.otf');
+        .existence-text {
+            font-family: 'oleo';
+            font-size: 26px;
+            color: #f6edbd;
+            line-height: 1.2;
+            margin: 0 0 16px 0;
         }
 
-        @font-face {
-            font-family: 'typewriter';
-            src: url('fonts/JMH\ Typewriter-Thin.ttf');
+        .contents-label {
+            font-size: 9px;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: #f6edbd2a;
+            margin: 0 0 6px 0;
+        }
+
+        .contents-list {
+            font-size: 11px;
+            letter-spacing: 0.08em;
+            color: #f6edbd44;
+            text-transform: uppercase;
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        .warning-block {
+            padding: 10px 16px;
+            border-bottom: 1px solid #f6edbd1a;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .warning-icon {
+            color: #780507;
+            font-size: 12px;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        .warning-text {
+            font-size: 9px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: #f6edbd33;
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        .widget-actions {
+            padding: 10px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .widget-actions-left {
+            font-size: 9px;
+            letter-spacing: 0.12em;
+            color: #f6edbd2a;
+            text-transform: uppercase;
+            line-height: 1.6;
         }
     </style>
 </head>
 <body>
 
-    <!-- top notice bar -->
-    <div class="captcha-notice">
-        <div class="captcha-notice-left">☠ schrodinger security inc. — observation chamber</div>
-        <div class="captcha-notice-right">
-            <div class="progress-dots">
-                <div class="dot complete"></div>
-                <div class="dot complete"></div>
-                <div class="dot active"></div>
-                <div class="dot"></div>
-                <div class="dot"></div>
+    <div class="site-header">
+        <span class="site-header-brand">☠ schrodinger security inc.</span>
+        <div class="site-header-right">
+            <div class="progress-track">
+                <div class="pip done"></div>
+                <div class="pip done"></div>
+                <div class="pip now"></div>
+                <div class="pip"></div>
+                <div class="pip"></div>
             </div>
             step 3 of 5
         </div>
     </div>
 
-    <!-- side warning -->
-    <div class="warning-box">
-        <div class="warning-title">⚠ notice</div>
-        by observing the box<br>
-        you may alter its<br>
-        quantum state.<br><br>
-        proceed with<br>
-        caution.
-    </div>
-
-    <div class="basket-cat">
-        <div class="cat-image">
-            <img src="images/basket-cat.png" alt="Cat in basket">
+    <div class="widget">
+        <div class="widget-header">
+            ☠ observation chamber
+            <span>v2.4.∞</span>
         </div>
 
-        <div class="cat-text">
-            <div class="cat-existance">
-                <p>the cat exists in the box...</p>
+        <div class="observation-block">
+            <div class="cat-panel">
+                <img src="images/basket-cat.png" alt="cat in basket">
             </div>
-            <div class="box-contents">
-                <p>along with:</p>
-                <p>a vial of poison, a hammer, a Geiger counter, and a radioactive substance</p>
+            <div class="info-panel">
+                <p class="info-label">current observation</p>
+                <p class="existence-text">the cat exists in the box...</p>
+                <p class="contents-label">along with</p>
+                <p class="contents-list">
+                    a vial of poison<br>
+                    a hammer<br>
+                    a geiger counter<br>
+                    a radioactive substance
+                </p>
             </div>
+        </div>
+
+        <div class="warning-block">
+            <span class="warning-icon">⚠</span>
+            <p class="warning-text">
+                by observing this box you may have altered its quantum state.<br>
+                proceed with caution. the cat is aware of being watched.
+            </p>
+        </div>
+
+        <div class="widget-actions">
+            <div class="widget-actions-left">
+                schrodinger security inc.<br>
+                protected by quantum uncertainty
+            </div>
+            <a href="confirm-state.html"><button class="verify-btn">continue →</button></a>
         </div>
     </div>
 
-    <div class="captcha-footer">
+    <div class="site-footer">
         <span>session id: ∞-∞-∞-∞</span>
         <span>quantum uncertainty protocol v2.4</span>
-        <span>protected by schrodinger security inc.</span>
+        <span>schrodinger security inc.</span>
     </div>
-
-    <a href="confirm-state.html">
-        <div class="exit-sign">
-            <img src="images/exit.png" alt="exit">
-        </div>
-    </a>
 
 </body>
 </html>

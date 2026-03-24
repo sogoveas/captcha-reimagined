@@ -1,98 +1,72 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
-    <title>all the boxes</title>
+    <title>schrodinger security — select the box</title>
     <style>
         body {
-            margin: 0;
-            padding: 0;
-            background-color: black;
-            color: #f6edbd;
-            font-family: 'typewriter';
             display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
             flex-direction: column;
-        }
-
-        .captcha-widget {
-            border: 2px solid #f6edbd;
-            background-color: #0a0a0a;
-            width: 460px;
-        }
-
-        .captcha-header {
-            font-size: 11px;
-            letter-spacing: 3px;
-            color: #780507;
-            text-transform: uppercase;
-            padding: 10px 15px;
-            border-bottom: 1px solid #f6edbd33;
-            display: flex;
-            justify-content: space-between;
             align-items: center;
+            justify-content: center;
+            height: 100vh;
+            overflow: hidden;
         }
 
-        .captcha-header span {
-            font-size: 10px;
-            color: #f6edbd44;
-            letter-spacing: 1px;
+        .widget { width: 420px; }
+
+        .prompt-block {
+            padding: 14px 16px;
+            border-bottom: 1px solid #f6edbd1a;
         }
 
-        .captcha-prompt {
-            padding: 12px 15px;
-            font-size: 18px;
-            letter-spacing: 1px;
-            border-bottom: 1px solid #f6edbd33;
-            color: #f6edbd;
-        }
-
-        .captcha-prompt p {
+        .prompt-block p {
             margin: 0;
+            font-size: 16px;
+            letter-spacing: 0.1em;
+            color: #f6edbd;
+            text-transform: uppercase;
         }
 
-        .captcha-sub {
-            font-size: 10px;
-            color: #f6edbd66;
-            letter-spacing: 2px;
-            margin-top: 4px !important;
+        .prompt-sub {
+            font-size: 9px !important;
+            color: #f6edbd !important;
+            letter-spacing: 0.2em !important;
+            margin-top: 5px !important;
         }
 
-        .captcha-error {
-            font-size: 10px;
+        .error-msg {
+            font-size: 9px;
             color: #780507;
-            letter-spacing: 2px;
-            margin-top: 4px !important;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            margin-top: 5px;
             display: none;
         }
 
-        .boxes {
+        /* 3×2 image grid */
+        .box-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 0;
-            border-bottom: 1px solid #f6edbd33;
+            border-bottom: 1px solid #f6edbd1a;
         }
 
         .box-cell {
-            border: 1px solid #f6edbd22;
             aspect-ratio: 1;
             overflow: hidden;
             cursor: pointer;
             position: relative;
-            transition: all 0.15s ease;
+            border: 1px solid #f6edbd0d;
+            transition: border-color 0.15s;
         }
 
-        .box-cell:hover {
-            border-color: #780507;
-            z-index: 2;
-        }
+        .box-cell:hover { border-color: #780507; z-index: 2; }
 
         .box-cell.selected {
-            border: 3px solid #f6edbd;
-            box-shadow: inset 0 0 0 2px #780507;
+            border: 2px solid #f6edbd;
+            box-shadow: inset 0 0 0 1px #780507;
         }
 
         .box-cell img {
@@ -100,162 +74,137 @@
             height: 100%;
             object-fit: cover;
             display: block;
-            filter: grayscale(20%);
-            transition: filter 0.15s ease;
+            filter: grayscale(30%) sepia(15%);
+            transition: filter 0.15s;
         }
 
-        .box-cell:hover img {
-            filter: grayscale(0%) sepia(20%);
-        }
+        .box-cell:hover img { filter: grayscale(10%) sepia(25%); }
 
-        .box-cell .tick {
+        .tick {
             display: none;
             position: absolute;
-            top: 6px;
-            left: 6px;
+            top: 6px; left: 6px;
             background: #780507;
             color: #f6edbd;
-            font-size: 12px;
-            width: 20px;
-            height: 20px;
+            font-size: 11px;
+            width: 18px; height: 18px;
             align-items: center;
             justify-content: center;
             border: 1px solid #f6edbd;
         }
 
-        .box-cell.selected .tick {
-            display: flex;
-        }
+        .box-cell.selected .tick { display: flex; }
 
-        .captcha-footer {
-            padding: 10px 15px;
+        .widget-actions {
+            padding: 10px 16px;
+            border-top: 1px solid #f6edbd1a;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
-        .captcha-footer-left {
+        .widget-actions-left {
             font-size: 9px;
-            color: #f6edbd33;
-            letter-spacing: 1px;
-            line-height: 1.6;
+            letter-spacing: 0.12em;
+            color: #f6edbd2a;
             text-transform: uppercase;
+            line-height: 1.6;
         }
 
-        .captcha-icons {
+        .widget-icons {
             display: flex;
-            gap: 12px;
+            gap: 14px;
             align-items: center;
         }
 
-        .captcha-icons span {
-            font-size: 18px;
+        .widget-icons span {
+            font-size: 16px;
             cursor: pointer;
-            color: #f6edbd44;
-            transition: color 0.2s;
+            color: #f6edbd33;
+            transition: color 0.15s;
         }
 
-        .captcha-icons span:hover {
-            color: #f6edbd;
-        }
-
-        .verify-btn {
-            font-size: 14px;
-            color: #f6edbd;
-            background-color: transparent;
-            border: 2px solid #f6edbd;
-            padding: 6px 18px;
-            cursor: pointer;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            transition: all 0.15s ease;
-        }
-
-        .verify-btn:hover {
-            background-color: #780507;
-            transform: translate(-1px, -1px);
-        }
-
-        .verify-btn:active {
-            transform: translate(2px, 2px);
-            box-shadow: none;
-        }
-
-        @font-face {
-            font-family: 'typewriter';
-            src: url('fonts/JMH\ Typewriter-Thin.ttf');
-        }
+        .widget-icons span:hover { color: #f6edbd; }
     </style>
 </head>
 <body>
 
-    <div class="captcha-widget">
-
-        <div class="captcha-header">
-            ☠ schrodinger security inc.
-            <span>v2.4.∞</span>
+    <div class="site-header">
+        <span class="site-header-brand">☠ schrodinger security inc.</span>
+        <div class="site-header-right">
+            <div class="progress-track">
+                <div class="pip done"></div>
+                <div class="pip now"></div>
+                <div class="pip"></div>
+                <div class="pip"></div>
+                <div class="pip"></div>
+            </div>
+            step 2 of 5
         </div>
+    </div>
 
-        <div class="captcha-prompt">
+    <div class="widget">
+        <div class="prompt-block">
             <p>select the box containing the cat</p>
-            <p class="captcha-error" id="error-msg">please select at least one box</p>
+            <p class="prompt-sub">click all that apply</p>
+            <p class="error-msg" id="error-msg">please select at least one box</p>
         </div>
 
-        <div class="boxes">
-            <div class="box-cell" onclick="toggleSelect(this)">
+        <div class="box-grid">
+            <div class="box-cell" onclick="toggle(this)">
                 <img src="images/19th-century-box.png" alt="">
                 <div class="tick">✓</div>
             </div>
-            <div class="box-cell" onclick="toggleSelect(this)">
+            <div class="box-cell" onclick="toggle(this)">
                 <img src="images/19th-century-box.png" alt="">
                 <div class="tick">✓</div>
             </div>
-            <div class="box-cell" onclick="toggleSelect(this)">
+            <div class="box-cell" onclick="toggle(this)">
                 <img src="images/19th-century-box.png" alt="">
                 <div class="tick">✓</div>
             </div>
-            <div class="box-cell" onclick="toggleSelect(this)">
+            <div class="box-cell" onclick="toggle(this)">
                 <img src="images/19th-century-box.png" alt="">
                 <div class="tick">✓</div>
             </div>
-            <div class="box-cell" onclick="toggleSelect(this)">
+            <div class="box-cell" onclick="toggle(this)">
                 <img src="images/19th-century-box.png" alt="">
                 <div class="tick">✓</div>
             </div>
-            <div class="box-cell" onclick="toggleSelect(this)">
+            <div class="box-cell" onclick="toggle(this)">
                 <img src="images/19th-century-box.png" alt="">
                 <div class="tick">✓</div>
             </div>
         </div>
 
-        <div class="captcha-footer">
-            <div class="captcha-footer-left">
-                protected by<br>quantum uncertainty
-            </div>
-            <div class="captcha-icons">
-                <span title="refresh challenge">↺</span>
+        <div class="widget-actions">
+
+            <div class="widget-icons">
+                <span title="refresh challenge" onclick="refresh()">↺</span>
                 <span title="audio challenge">♪</span>
-                <span title="help">?</span>
             </div>
             <button class="verify-btn" onclick="handleVerify()">verify</button>
         </div>
-
     </div>
 
     <script>
-        function toggleSelect(cell) {
+        function toggle(cell) {
             cell.classList.toggle('selected');
             document.getElementById('error-msg').style.display = 'none';
         }
 
         function handleVerify() {
             const selected = document.querySelectorAll('.box-cell.selected');
-            const error = document.getElementById('error-msg');
             if (selected.length > 0) {
                 window.location.href = 'cat-in-box.html';
             } else {
-                error.style.display = 'block';
+                document.getElementById('error-msg').style.display = 'block';
             }
+        }
+
+        function refresh() {
+            document.querySelectorAll('.box-cell').forEach(c => c.classList.remove('selected'));
+            document.getElementById('error-msg').style.display = 'none';
         }
     </script>
 </body>
