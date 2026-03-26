@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>schrodinger security — state undefined</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            overflow: hidden;
+            background: #0a0a0a;
+            color: #f6edbd;
+            font-family: monospace;
+        }
+
+        .title {
+            color: #780507;
+        }
+
+        .widget {
+            width: 400px;
+            border: 1px solid #f6edbd1a;
+            background: #111;
+        }
+
+        .block {
+            padding: 16px;
+            border-bottom: 1px solid #f6edbd1a;
+            text-align: center;
+        }
+
+        .title {
+            font-size: 36px;
+            color: #f6edbd;
+            margin: 0 0 8px 0;
+        }
+
+        .sub {
+            font-size: 14px;
+            color: #f6edbd66;
+        }
+
+        .cat-box {
+            padding: 20px;
+            text-align: center;
+        }
+
+    
+        .state-text {
+            margin-top: 12px;
+            font-size: 14px;
+            color: #f6edbd99;
+        }
+
+        .actions {
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .actions a {
+            text-decoration: none;
+            color: #f6edbdcc;
+            border: 1px solid #f6edbd22;
+            padding: 8px;
+            text-align: center;
+            transition: all 0.15s;
+        }
+
+        .actions a:hover {
+            background: #f6edbd11;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+
+<div class="widget">
+    <div class="block">
+        <p class="title" style="color: #780507;">STATE: UNDEFINED</p>
+        <p class="sub">observation required to collapse the waveform</p>
+    </div>
+
+    <div class="cat-box">
+        <div class="state-text" id="stateText">
+            the system remains in superposition
+        </div>
+    </div>
+
+    <div class="actions">
+        <a href="box.html">observe the box</a>
+        <a href="confirm-state.html">force a measurement</a>
+        <a href="index.html">abort experiment</a>
+    </div>
+</div>
+
+</body>
+</html>

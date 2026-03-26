@@ -24,7 +24,6 @@ body {
     min-height: 100vh;
 }
 
-/* ── site chrome ── */
 
 .site-header {
     position: fixed;
@@ -58,8 +57,16 @@ body {
     border: 1px solid #f6edbd22;
 }
 
-.progress-track .pip.done { background: #780507; border-color: #780507; }
-.progress-track .pip.now  { background: #f6edbd; border-color: #f6edbd; animation: blink 1.4s ease-in-out infinite; }
+.progress-track .pip.done { 
+    background: #780507; 
+    border-color: #780507; 
+}
+
+.progress-track .pip.now  { 
+    background: #f6edbd; 
+    border-color: #f6edbd; 
+    animation: blink 1.4s ease-in-out infinite;
+}
 
 @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.25} }
 
@@ -123,7 +130,6 @@ body {
 
 .widget-footer-icons span:hover { color: #f6edbd; }
 
-/* ── shared option rows ── */
 
 .option-row {
     display: flex;
@@ -140,20 +146,27 @@ body {
     transition: color 0.15s;
 }
 
-.option-row:last-child { border-bottom: none; }
-.option-row:hover { color: #f6edbd; }
+.option-row:last-child {
+    border-bottom: none; 
+}
+
+.option-row:hover { 
+    color: #f6edbd; 
+}
 
 .radio-dot {
     width: 13px; height: 13px;
-    border: 1px solid #f6edbd2a;
+    border: 1px solid #f6edbd;
     border-radius: 50%;
     flex-shrink: 0;
     transition: all 0.15s;
 }
 
-.option-row:hover .radio-dot { background-color: #780507; border-color: #780507; }
+.option-row:hover .radio-dot { 
+    background-color: #780507; 
+    border-color: #780507; 
+}
 
-/* ── verify button ── */
 
 .verify-btn {
     font-family: 'typewriter', monospace;
@@ -168,5 +181,11 @@ body {
     transition: all 0.15s;
 }
 
-.verify-btn:hover { background: #780507; border-color: #780507; }
-.verify-btn:active { transform: translate(1px,1px); }
+.verify-btn:hover { 
+    background: #780507; 
+    border-color: #780507; 
+}
+
+.verify-btn:active { 
+    transform: translate(1px,1px); 
+}

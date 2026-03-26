@@ -28,10 +28,10 @@
             flex-shrink: 0;
             width: 200px;
             border-right: 1px solid #f6edbd1a;
-            padding: 20px;
+            padding: 20px 20px 20px 0; /* removed left padding */
             display: flex;
             align-items: center;
-            justify-content: center;
+            justify-content: flex-start; /* align image left */
         }
 
         .cat-panel img {
@@ -39,6 +39,7 @@
             width: auto;
             display: block;
             filter: grayscale(20%) sepia(10%);
+            margin-left: 0;
         }
 
         .info-panel {
@@ -50,7 +51,7 @@
             font-size: 9px;
             letter-spacing: 0.25em;
             text-transform: uppercase;
-            color: #f6edbd2a;
+            color: #f6edbd;
             margin: 0 0 12px 0;
         }
 
@@ -66,14 +67,14 @@
             font-size: 9px;
             letter-spacing: 0.2em;
             text-transform: uppercase;
-            color: #f6edbd2a;
+            color: #f6edbd;
             margin: 0 0 6px 0;
         }
 
         .contents-list {
             font-size: 11px;
             letter-spacing: 0.08em;
-            color: #f6edbd44;
+            color: #f6edbd;
             text-transform: uppercase;
             line-height: 1.7;
             margin: 0;
@@ -167,10 +168,6 @@
         </div>
 
         <div class="widget-actions">
-            <div class="widget-actions-left">
-                schrodinger security inc.<br>
-                protected by quantum uncertainty
-            </div>
             <a href="confirm-state.html"><button class="verify-btn">continue →</button></a>
         </div>
     </div>
